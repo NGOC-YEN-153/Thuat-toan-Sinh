@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+int check(vector<int> a,int n,int k){
+    int x=n;
+    for(int i=k-1;i>=0;i--){
+        if(a[i]!=x--)return 0;
+    }
+    return 1;
+}
+#define ll long  long
+void sinh(vector <int>&a,int n,int k){
+      int x=n;
+    for(int i=k-1;i>=0;i--){
+        if(a[i]!=x--){
+            a[i]++;
+            for(int j=i+1;j<k;j++)a[j]=a[j-1]+1;
+            return;
+        }
+    }
+}
+int main(){
+    int n,k;cin>>n>>k;
+    vector<int>a;
+    for(int i=0;i<k;i++){
+        int x;cin>>x;
+        a.push_back(x);
+    }
+    vector <int>b;
+    int x=1;
+    for(int i=0;i<k;i++)b.push_back(x++);
+    vector <vector<int>>v;int g=0;
+    while(1){
+        v.push_back(b);g++;
+        if(check(b,n,k))break;
+        else sinh(b,n,k);
+    }
+    int cnt=0;
+    for(int i=g-1;i>=0;i--){
+        int ok=0;++cnt;
+        for(int j=0;j<k;j++){
+            if(v[i][j]!=a[j])ok=1;
+        }
+        if(!ok){
+            cout<<cnt;
+            break;
+        }
+    }
+}
