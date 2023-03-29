@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+int check(int  a[],int k,int N){
+    for(int i=k-1;i>=0;i--){
+        int x=a[i];
+        if(x!=N--)return 0;
+    }
+    return 1;
+}
+void solve(int a[],int n,int k){
+    if(check(a,k,n)){
+        for(int i=0;i<k;i++){
+            cout<<i+1<<" ";
+        }
+        return;
+    }
+    for(int i=k-1;i>=0;i--){
+        if(a[i]!=n+i-k+1){
+            a[i]++;
+            for(int j=i+1;j<k;j++){
+                a[j]=a[j-1]+1;
+            }
+            break;
+        }
+    }
+    for(int i=0;i<k;i++)cout<<a[i]<<" ";
+}
+
+int main(){
+    int n;cin>>n;int k;cin>>k;
+    int a[k];
+    for(int i=0;i<k;i++)cin>>a[i];
+    solve(a,n,k);
+}
