@@ -1,0 +1,11 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long  long
+
+int main(){
+    string s;getline(cin,s);
+    while(next_permutation(s.begin(),s.end())){
+        cout<<s;return 0;
+    }
+        cout<<"NOT EXIST";
+}
