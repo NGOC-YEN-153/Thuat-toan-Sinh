@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+#define ll long long
+//123456789
+//1234
+//6789
+using namespace std;
+ll n,k;
+ll a[1000];
+int check(ll a[]){
+    ll tmp=n;
+    for(ll i=k;i>=1;i--){
+        if(a[i]!=tmp)return 0;// chua phai cau hinh cuoi cung
+        else --tmp;
+    }
+    return 1;// day la cau hinh cuoi cung
+}
+int Next(ll a[]){
+    if(check(a))return 0;
+    ll tmp=n;
+    for(ll i=k;i>=1;i--){
+        if(a[i]!=tmp){
+            a[i]++;
+            ll x=a[i];
+            for(ll j=i+1;j<=k;j++)a[j]=++x;
+            break;
+        }
+        else --tmp;
+    }
+    return 1;
+}
+int main(){
+    cin>>n>>k;
+    for(ll i=1;i<=k;i++){
+        a[i]=i;
+    }
+    do{
+        for(ll i=1;i<=k;i++)cout<<a[i];
+        cout<<endl;
+    }
+    while(Next(a));
+}
